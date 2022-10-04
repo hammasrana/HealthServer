@@ -110,7 +110,6 @@ app.get("/Doctors", (req, res) => {
   });
 
 
-// hammas content
 app.post("/post", async (req, res) => {
   const labtest = req.query;
   console.log(req.query)
