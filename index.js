@@ -3,6 +3,7 @@ const bodyParser = require('body-parser')
 const app = express();
 const mongoose = require("mongoose");
 const Doctors = require("./Models/doctors");
+const Nurses = require("./Models/nurses");
 const LabTests = require("./Models/labtest");
 const AskQuestion = require("./Models/askQuestion");
 const Labpost=require("./Models/post");
@@ -29,6 +30,17 @@ mongoose.connect(DB,{
 
 app.get("/Doctors", (req, res) => {
     Doctors.find(req.query, (err, result) => {
+      if (err) {
+        res.json(err);
+      } else {
+        res.json(result);
+        // console.log(result+" hello")
+      }
+    });
+  });
+
+app.get("/Nurses", (req, res) => {
+    Nurses.find(req.query, (err, result) => {
       if (err) {
         res.json(err);
       } else {
@@ -87,6 +99,16 @@ app.get("/Doctors", (req, res) => {
 
     res.json(question);
   });
+
+app.post("/createNurse", async (req, res) => {
+    const nurse = req.query;
+    console.log(req.query)
+    const newnurse = new Nurses(nurse);
+    await newnurse.save().then(()=>console.log(newnurse)).catch((err)=>console.log(err));
+
+    res.json(nurse);
+});
+
   app.get("/updateQuestion", (req, res) => {
     // var reslt = json
     AskQuestion.findOneAndUpdate(
