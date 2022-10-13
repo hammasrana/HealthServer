@@ -7,6 +7,7 @@ const Nurses = require("./Models/nurses");
 const LabTests = require("./Models/labtest");
 const AskQuestion = require("./Models/askQuestion");
 const Labpost=require("./Models/post");
+const Labmedi=require("./Models/ordermedicine")
 const cors = require("cors");
 const { json } = require("body-parser");
 
