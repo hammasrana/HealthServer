@@ -131,7 +131,14 @@ app.post("/createNurse", async (req, res) => {
       });
   });
 
-
+app.post("/medicine", async (req, res) => {
+    const medi = req.body;
+    console.log(req.body)
+    const newlabmedi = new Labmedi(medi);
+    await newlabmedi.save()
+    .then(()=>console.log(newlabmedi)).catch((err)=>console.log("Something Wrong> "+err)); 
+    res.json(medi);
+});
 app.post("/post", async (req, res) => {
   const labtest = req.query;
   console.log(req.query)
