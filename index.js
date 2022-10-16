@@ -39,6 +39,20 @@ app.get("/Doctors", (req, res) => {
       }
     });
   });
+//fetch randomly 3 no of doctors from specific speciality
+app.get("/NoOfDoctors", (req, res) => {
+    Doctors.aggregate([
+      { $match: { speciality: req.query.spec } },
+      { $sample: { size: 3 } }
+    ], (err, result) => {
+      if (err) {
+        res.json(err);
+      } else {
+        res.json(result);
+        // console.log(result+" hello")
+      }
+    });
+  });
 
 app.get("/Nurses", (req, res) => {
     Nurses.find(req.query, (err, result) => {
