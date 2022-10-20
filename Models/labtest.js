@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 // const { stringify } = require('querystring');
-const validator = require("validator");
 
 const health = new mongoose.Schema({
     name: {
