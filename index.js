@@ -40,6 +40,18 @@ app.get("/Doctors", (req, res) => {
       }
     });
   });
+
+app.get("/HospitalDoctors", (req, res) => {
+    Doctors.find({hospital:{$elemMatch: {name: req.query.name}}}, (err, result) => {
+      if (err) {
+        res.json(err);
+      } else {
+        res.json(result);
+        // console.log(result+" hello")
+      }
+    })
+  });
+
 //fetch randomly 3 no of doctors from specific speciality
 app.get("/NoOfDoctors", (req, res) => {
     Doctors.aggregate([
@@ -57,6 +69,17 @@ app.get("/NoOfDoctors", (req, res) => {
 
 app.get("/Nurses", (req, res) => {
     Nurses.find(req.query, (err, result) => {
+      if (err) {
+        res.json(err);
+      } else {
+        res.json(result);
+        // console.log(result+" hello")
+      }
+    });
+  });
+
+app.get("/Hospitals", (req, res) => {
+    Hospital.find(req.query, (err, result) => {
       if (err) {
         res.json(err);
       } else {
