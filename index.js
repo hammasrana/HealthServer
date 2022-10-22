@@ -42,7 +42,7 @@ app.get("/Doctors", (req, res) => {
   });
 
 app.get("/HospitalDoctors", (req, res) => {
-    Doctors.find({hospital:{$elemMatch: {name: req.query.name}}}, (err, result) => {
+    Doctors.find({hospital:{$elemMatch: {name: req.query.name, address: req.query.area, city: req.query.city}}}, (err, result) => {
       if (err) {
         res.json(err);
       } else {
