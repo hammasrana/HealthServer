@@ -206,16 +206,6 @@ app.post("/book", async (req, res) => {
   res.json(labbook);
 });
 
-// get method to get all 
-app.get('/get', async (req, res) => {
-  try{
-      const health = await LabTests.find();
-      res.json(health)
-  }
-  catch(error){
-      res.status(500).json({message: error.message})
-  }
-})
 
 //get method to  basically get the one  by ID
 app.get('/get/:id', async (req, res) => {
