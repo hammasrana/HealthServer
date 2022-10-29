@@ -89,7 +89,16 @@ app.get("/Hospitals", (req, res) => {
     });
   });
 
-  
+  app.get("/Questions", (req, res) => {
+    AskQuestion.find(req.query, (err, result) => {
+      if (err) {
+        res.json(err);
+      } else {
+        res.json(result);
+        // console.log(result+" hello")
+      }
+    });
+  });
 
   app.get("/DoctorName", (req, res) => {
     Doctors.find(req.query,{name: 1, degree: 1,speciality:1,_id: 0}, (err, result) => {
