@@ -11,7 +11,9 @@ const askQ = new mongoose.Schema({
         docDeg: {type: String, required: true},
         docSpec: {type: String, required: true},
         ans: {type: String, required: true}
-    }}
+    }},
+    date: {type: String, required: true, },
+    location: {type: String,}
 });
 const AskQuestion = new mongoose.model("AskQuestion", askQ);
 module.exports = AskQuestion;
