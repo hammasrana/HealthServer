@@ -41,6 +41,16 @@ app.get("/Doctors", (req, res) => {
     });
   });
 
+app.post("/DoctorsUpdateAll", (req, res) => {
+    Doctors.update({},req.query, (err, result) => {
+      if (err) {
+        res.json(err);
+      } else {
+        res.json(result);
+      }
+    });
+  });
+
 app.get("/HospitalDoctors", (req, res) => {
     Doctors.find({hospital:{$elemMatch: {name: req.query.name, address: req.query.area, city: req.query.city}}}, (err, result) => {
       if (err) {
