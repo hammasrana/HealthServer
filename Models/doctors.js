@@ -32,6 +32,14 @@ const DoctorSchema = new mongoose.Schema({
             btn: {type: String, }
         },
     },
+    phone:{type: String, required: true},
+    patientSatisfy:{type: Number,},
+    staffScore: {type: Number,},
+    waitingTime: {type: Number,},
+    about:{type: Array, items: {
+        label:{type: String},
+        text:{type: String}
+    }},
 });
 // DoctorSchema.index({tags:'text'});
 const Doctors = new mongoose.model('Doctors', DoctorSchema);
