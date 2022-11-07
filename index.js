@@ -200,14 +200,13 @@ app.post("/createHospital", async (req, res) => {
       });
   });
 
-app.post("/createSpeciality", async (req, res) => {
-  const speciality = req.query;
-  console.log(req.query)
-  const newspeciality = new Specialities(speciality);
-  await newspeciality.save().then(() => console.log(newspeciality)).catch((err) => console.log(err));
-
-  res.json(speciality);
-});
+    app.post("/createSpeciality", async (req, res) => {
+      const speciality = req.query;
+      console.log(req.query)
+      const newspeciality = new Specialities(speciality);
+      await newspeciality.save().then(() => console.log(newspeciality)).catch((err) => console.log(err));
+      res.json(speciality);
+    });
 
 app.post("/medicine", async (req, res) => {
     const medi = req.body;
