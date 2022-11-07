@@ -78,6 +78,16 @@ app.get("/NoOfDoctors", (req, res) => {
     });
   });
 
+app.get("/Specialities", (req, res) => {
+  Specialities.find(req.query, (err, result) => {
+    if (err) {
+      res.json(err);
+    } else {
+      res.json(result);
+    }
+  });
+});
+
 app.get("/Nurses", (req, res) => {
     Nurses.find(req.query, (err, result) => {
       if (err) {
