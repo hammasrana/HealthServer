@@ -7,6 +7,7 @@ const Nurses = require("./Models/nurses");
 const LabTests = require("./Models/labtest");
 const AskQuestion = require("./Models/askQuestion");
 const Hospital =require("./Models/hospitals");
+const Specialities = require("./Models/specialities");
 const Labpost=require("./Models/post");
 const Labmedi=require("./Models/ordermedicine")
 const cors = require("cors");
@@ -188,6 +189,15 @@ app.post("/createHospital", async (req, res) => {
         }
       });
   });
+
+app.post("/createSpeciality", async (req, res) => {
+  const speciality = req.query;
+  console.log(req.query)
+  const newspeciality = new Specialities(speciality);
+  await newspeciality.save().then(() => console.log(newspeciality)).catch((err) => console.log(err));
+
+  res.json(speciality);
+});
 
 app.post("/medicine", async (req, res) => {
     const medi = req.body;
