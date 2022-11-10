@@ -8,6 +8,7 @@ const LabTests = require("./Models/labtest");
 const AskQuestion = require("./Models/askQuestion");
 const Hospital =require("./Models/hospitals");
 const Specialities = require("./Models/specialities");
+const Users = require("./Models/users");
 const Labpost=require("./Models/post");
 const Labmedi=require("./Models/ordermedicine")
 const cors = require("cors");
@@ -142,6 +143,16 @@ app.get("/Hospitals", (req, res) => {
     });
   });
 
+app.get("/Users", (req, res) => {
+  Users.find(req.query, (err, result) => {
+    if (err) {
+      res.json(err);
+    } else {
+      res.json(result);
+    }
+  });
+});
+
   app.post("/createDoctor", async (req, res) => {
       const doctor = req.query;
       console.log(req.query)
@@ -178,6 +189,15 @@ app.post("/createHospital", async (req, res) => {
     res.json(hospital);
   });
 
+app.post("/createUser", async (req, res) => {
+  const user = req.query;
+  console.log(req.query)
+  const newuser = new Users(user);
+  await newuser.save().then(() => console.log(newuser)).catch((err) => console.log(err));
+
+  res.json(user);
+});
+
   app.get("/updateQuestion", (req, res) => {
     // var reslt = json
     AskQuestion.findOneAndUpdate(
@@ -199,6 +219,20 @@ app.post("/createHospital", async (req, res) => {
         }
       });
   });
+
+app.get("/updateUser", (req, res) => {
+  // var reslt = json
+  Users.findOneAndUpdate(
+    { name: req.query.name },
+    req.query, (err, result) => {
+      if (err) {
+        res.json(err);
+      } else {
+        res.json(req.query);
+        // console.log(result+" hello")
+      }
+    });
+});
 
     app.post("/createSpeciality", async (req, res) => {
       const speciality = req.query;
