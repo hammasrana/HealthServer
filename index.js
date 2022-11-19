@@ -148,7 +148,13 @@ app.get("/Users", (req, res) => {
     if (err) {
       res.json(err);
     } else {
-      res.json(result);
+      if(result.length == 0){
+        return res.status(204).send({
+          message: "User not found!"
+        })
+      }
+      else{
+        res.json(result);
     }
   });
 });
