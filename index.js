@@ -155,6 +155,7 @@ app.get("/Users", (req, res) => {
       }
       else{
         res.json(result);
+      }
     }
   });
 });
