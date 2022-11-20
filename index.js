@@ -162,7 +162,7 @@ app.get("/Users", (req, res) => {
 });
 
 app.get("/Areas", (req, res) => {
-  Users.find(req.query, (err, result) => {
+  Areas.find(req.query, (err, result) => {
     if (err) {
       res.json(err);
     } else {
