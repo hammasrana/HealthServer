@@ -9,6 +9,7 @@ const AskQuestion = require("./Models/askQuestion");
 const Hospital =require("./Models/hospitals");
 const Specialities = require("./Models/specialities");
 const Users = require("./Models/users");
+const Areas = require("./Models/areas");
 const Labpost=require("./Models/post");
 const Labmedi=require("./Models/ordermedicine")
 const cors = require("cors");
@@ -248,6 +249,15 @@ app.get("/updateUser", (req, res) => {
       await newspeciality.save().then(() => console.log(newspeciality)).catch((err) => console.log(err));
       res.json(speciality);
     });
+
+app.post("/createarea", async (req, res) => {
+  const area = req.query;
+  console.log(req.query)
+  const newarea = new Areas(area);
+  await newarea.save().then(() => console.log(newarea)).catch((err) => console.log(err));
+
+  res.json(area);
+});
 
 app.post("/medicine", async (req, res) => {
     const medi = req.body;
