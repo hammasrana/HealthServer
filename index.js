@@ -161,6 +161,23 @@ app.get("/Users", (req, res) => {
   });
 });
 
+app.get("/Areas", (req, res) => {
+  Users.find(req.query, (err, result) => {
+    if (err) {
+      res.json(err);
+    } else {
+      if(result.length == 0){
+        return res.status(404).send({
+          message: "Area(s) not found!"
+        })
+      }
+      else{
+        res.json(result);
+      }
+    }
+  });
+});
+
   app.post("/createDoctor", async (req, res) => {
       const doctor = req.query;
       console.log(req.query)
