@@ -38,8 +38,14 @@ app.get("/Doctors", (req, res) => {
       if (err) {
         res.json(err);
       } else {
-        res.json(result);
-        // console.log(result+" hello")
+        if(result.length == 0){
+            return res.status(404).send({
+              message: "Doctor(s) not found!"
+            })
+          }
+          else{
+            res.json(result);
+          }
       }
     });
   });
