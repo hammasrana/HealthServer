@@ -185,13 +185,29 @@ app.get("/Areas", (req, res) => {
 });
 
   app.post("/createDoctor", async (req, res) => {
-      const doctor = req.query;
-      console.log(req.query)
-      const newdoctor = new Doctors(doctor);
-      await newdoctor.save().then(()=>console.log(newdoctor)).catch((err)=>console.log(err));
+  const doctor = req.query;
+  console.log(req.query)
+  const newdoctor = new Doctors(doctor);
+  await newdoctor.save().then(() => {
+    console.log(newdoctor)
+    Specialities.findOneAndUpdate(
+      { name: req.query.speciality },
+      {
+        $inc: {
+          noOfDoctors: 1
+        },
+      },{new: true, upsert: true}, (err, result) => {
+        if (err) {
+          res.json(err);
+        } else {
+          // res.json(result);
+          console.log(result+" hello")
+        }
+      });
+  }).catch((err) => console.log(err));
 
-      res.json(doctor);
-  });
+  res.json(doctor);
+});
 
   app.post("/createQuestion", async (req, res) => {
     const question = req.query;
