@@ -23,7 +23,7 @@ app.use(
 app.use(bodyParser.json());
 app.use(cors());
 
-const DB = 'mongodb+srv://kumail:kumail123@clusterkumm.jj8fx.mongodb.net/HealthCare?retryWrites=true&w=majority';
+const DB = 'mongodb://hammas:hammas123@clusterkumm-shard-00-00.jj8fx.mongodb.net:27017,clusterkumm-shard-00-01.jj8fx.mongodb.net:27017,clusterkumm-shard-00-02.jj8fx.mongodb.net:27017/HealthCare?replicaSet=atlas-vkybkb-shard-0&ssl=true&authSource=admin';
 mongoose.connect(DB,{
     useNewUrlParser: true, 
     useUnifiedTopology: true,
